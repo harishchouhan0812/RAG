@@ -5,6 +5,7 @@ Main application entry point with complete RAG pipeline
 
 import os
 import sys
+import pymupdf
 from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
