@@ -178,29 +178,34 @@ function App() {
           {viewMode === 'evaluation' && <EvaluationDashboard />}
           {viewMode === 'pipeline' && (
             <>
-              {/* Pipeline Visualization */}
+              {/* Pipeline Visualization - Full Height */}
               <div className="flex-1 overflow-hidden">
                 <PipelineVisualization />
               </div>
 
-              {/* Query Interface */}
-              <div className="h-64 border-t border-white/10">
-                <QueryInterface />
+              {/* Event Log - Bottom */}
+              <div className="h-48 border-t border-white/10">
+                <EventLog />
               </div>
             </>
           )}
         </main>
 
-        {/* Right Panel - Inspector (only in pipeline mode) */}
-        {viewMode === 'pipeline' && <Inspector />}
+        {/* Right Panel - Query + Inspector (only in pipeline mode) */}
+        {viewMode === 'pipeline' && (
+          <div className="w-96 border-l border-white/10 flex flex-col overflow-hidden">
+            {/* Query Interface - Top Half */}
+            <div className="flex-1 border-b border-white/10 overflow-hidden">
+              <QueryInterface />
+            </div>
+            
+            {/* Inspector - Bottom Half */}
+            <div className="flex-1 overflow-hidden">
+              <Inspector />
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Bottom Panel - Event Log (only in pipeline mode) */}
-      {viewMode === 'pipeline' && (
-        <div className="h-48 border-t border-white/10">
-          <EventLog />
-        </div>
-      )}
     </div>
   );
 }
