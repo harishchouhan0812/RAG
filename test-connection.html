@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Test</title>
+    <style>
+        body { font-family: Arial; padding: 40px; background: #1a1a2e; color: white; }
+        .result { background: #16213e; padding: 20px; margin: 10px 0; border-radius: 8px; }
+        .success { color: #4ade80; }
+        .error { color: #ef4444; }
+        button { background: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Backend Connection Test</h1>
+    
+    <button onclick="testRoot()">Test / (Root)</button>
+    <button onclick="testApi()">Test /api</button>
+    <button onclick="testApiStatus()">Test /api/pipeline/status</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+
+        async function testRoot() {
+            results.innerHTML += '<div class="result">Testing http://localhost:8000/ ...</div>';
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const data = await response.json();
+                results.innerHTML += `<div class="result success">✅ Root endpoint works!<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                results.innerHTML += `<div class="result error">❌ Root endpoint failed: ${error.message}</div>`;
+            }
+        }
+
+        async function testApi() {
+            results.innerHTML += '<div class="result">Testing http://localhost:8000/api ...</div>';
+            try {
+                const response = await fetch('http://localhost:8000/api');
+                const data = await response.json();
+                results.innerHTML += `<div class="result success">✅ /api endpoint works!<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                results.innerHTML += `<div class="result error">❌ /api endpoint failed: ${error.message}</div>`;
+            }
+        }
+
+        async function testApiStatus() {
+            results.innerHTML += '<div class="result">Testing http://localhost:8000/api/pipeline/status ...</div>';
+            try {
+                const response = await fetch('http://localhost:8000/api/pipeline/status');
+                const data = await response.json();
+                results.innerHTML += `<div class="result success">✅ Pipeline status works!<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                results.innerHTML += `<div class="result error">❌ Pipeline status failed: ${error.message}</div>`;
+            }
+        }
+
+        // Auto-test on load
+        setTimeout(() => {
+            testRoot();
+            setTimeout(() => testApi(), 500);
+            setTimeout(() => testApiStatus(), 1000);
+        }, 500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║       🎓 EXPLAINABLE RAG LAB - HOW TO RUN                ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+📌 EASIEST WAY (RECOMMENDED):
+═══════════════════════════════════
+
+Double-click: FINAL-RUN.bat
+
+That's it! Everything starts automatically.
+
+
+📌 MANUAL WAY (If batch file doesn't work):
+═══════════════════════════════════════════
+
+Step 1: Start Backend
+─────────────────────
+Open Command Prompt and run:
+
+  cd c:\Users\chouh\OneDrive\Desktop\rag
+  venv\Scripts\activate.bat
+  cd backend
+  python main.py
+
+Wait for: "🎉 RAG Pipeline Ready!"
+
+
+Step 2: Start Frontend
+──────────────────────
+Open ANOTHER Command Prompt and run:
+
+  cd c:\Users\chouh\OneDrive\Desktop\rag
+  npm run dev
+
+Browser opens automatically at http://localhost:5173
+
+
+📌 TESTING CONNECTION:
+═══════════════════════
+
+If you see "Connection Error":
+
+1. Open: test-connection.html in your browser
+2. Check if all three tests pass
+3. If tests pass but app fails, there's a CORS issue
+
+
+📌 WHAT YOU'LL SEE:
+════════════════════
+
+✅ Backend Window:
+   - Initializing RAG Pipeline Components...
+   - ✅ Loaded embedding model
+   - ✅ Initialized vector store
+   - ✅ Initialized hybrid retriever
+   - ✅ Loaded reranker model
+   - ✅ Demo mode ready
+   - 🎉 RAG Pipeline Ready!
+
+✅ Frontend:
+   - Beautiful dark dashboard
+   - Upload button in sidebar
+   - Pipeline visualization in center
+   - Query interface at bottom
+   - Event log at bottom
+
+
+📌 FIRST TIME USE:
+═══════════════════
+
+1. Click "Upload Document"
+2. Select: samples/example-document.txt
+3. Click "Chunk Document" (keep defaults)
+4. Click "Generate Embeddings"
+5. Click "Build Index"
+6. Type a question: "What is this document about?"
+7. Press Enter
+8. Watch the magic! ✨
+
+
+📌 TROUBLESHOOTING:
+════════════════════
+
+Problem: "Connection Error"
+Solution: 
+  - Wait 10 seconds for models to load
+  - Refresh browser (F5)
+  - Make sure backend shows "🎉 RAG Pipeline Ready!"
+
+Problem: Backend won't start
+Solution:
+  - Check if port 8000 is already in use
+  - Run: netstat -ano | findstr :8000
+  - Kill that process or restart computer
+
+Problem: "Module not found"
+Solution:
+  - Run: setup.bat again
+  - Make sure venv is activated
+  - Run: pip install -r requirements.txt
+
+Problem: Models downloading slow
+Solution:
+  - This is NORMAL for first time!
+  - Sentence Transformers: ~400MB
+  - Takes 2-5 minutes
+  - Subsequent starts: 5-10 seconds
+
+
+📌 PORTS USED:
+═══════════════
+
+8000 - Backend (FastAPI)
+5173 - Frontend (Vite)
+
+Make sure these ports are free!
+
+
+📌 STOPPING THE APP:
+═════════════════════
+
+Frontend: Press Ctrl+C in the frontend terminal
+Backend:  Press Ctrl+C in the backend terminal
+         Or just close the windows
+
+
+📌 NEED HELP?
+══════════════
+
+1. Check both terminal windows for errors
+2. Open: test-connection.html
+3. Check browser console (F12 > Console)
+4. Make sure both servers are running
+5. Try: http://localhost:8000/docs (API documentation)
+
+
+═══════════════════════════════════════════════════════════
+
+🎉 Enjoy exploring RAG!
+
+This is a teaching tool designed for university seminars.
+Every step is visualized and explained.
+
+Features:
+- Live pipeline visualization
+- Teaching mode with lessons
+- Failure modes lab
+- Evaluation dashboard
+- Source attribution
+- Real-time event logging
+
+═══════════════════════════════════════════════════════════
